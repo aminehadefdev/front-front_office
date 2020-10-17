@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
-import qs from 'qs'
-import axios from 'axios'
+import React from 'react'
+// import qs from 'qs'
+// import axios from 'axios'
 
 function Admin(props){
-    const [isAccepted, setIsAccepted] = useState(props.user.isAccepted)
+    //const [isAccepted, setIsAccepted] = useState(props.user.isAccepted)
 
     return (
         <>

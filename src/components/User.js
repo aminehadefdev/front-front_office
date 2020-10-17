@@ -8,7 +8,7 @@ function User(props){
     const [sup, setSup] = useState(false)
 
     function accepter(event){
-        if(isAccepted == true){
+        if(isAccepted === true){
             return 0
         }
         var id = event.currentTarget.value
@@ -35,7 +35,7 @@ function User(props){
     }
 
     function refuser(event){
-        if(isAccepted == false){
+        if(isAccepted === false){
             return 0
         }
         var id = event.currentTarget.value
@@ -97,8 +97,8 @@ function User(props){
                     <td>{props.user.lastname}</td>
                     <td>{props.user.email}</td>
                     <td>{props.user.job}</td>
-                    <td>{props.user.role == 1? "mentore":"mentorée"}</td>
-                    <td>{isAccepted == 1? 'true':"false"}</td>
+                    <td>{props.user.role === 1? "mentore":"mentorée"}</td>
+                    <td>{isAccepted === 1? 'true':"false"}</td>
                     <td>amineBidon@gmail.com</td>
                     <td className="conatnair-actions">
                         <button onClick={accepter} value={props.user.id} className="btn btn-success">Acepter</button>

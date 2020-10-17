@@ -3,7 +3,7 @@ import axios from 'axios'
 import qs from 'qs'
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter as Router, Redirect } from 'react-router-dom';
+import {BrowserRouter as Redirect } from 'react-router-dom';
 
 
 function SignIn(){
@@ -65,7 +65,7 @@ function SignIn(){
         <div className="App" style={{marginTop: "20vh"}}>
         <h1>login</h1>
         <div className="container-fluid" style={{width: "60%"}}>
-          {error != ''? <p style={{color: "red"}}>{error}</p>:null}
+          {error !== ''? <p style={{color: "red"}}>{error}</p>:null}
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Control
@@ -74,7 +74,7 @@ function SignIn(){
                 placeholder="email"
                 value={email}
               />
-              {errorEmail != "" ? <small style={{color: "red"}}>{errorEmail}</small>:null}
+              {errorEmail !== "" ? <small style={{color: "red"}}>{errorEmail}</small>:null}
             </Form.Group>
             <Form.Group>
               <Form.Control
@@ -83,13 +83,13 @@ function SignIn(){
                 onChange={(event=>{setPassword(event.currentTarget.value)})}
                 value={password}
               />
-              {errorPassword != "" ? <small style={{color: "red"}}>{errorPassword}</small>:null}
+              {errorPassword !== "" ? <small style={{color: "red"}}>{errorPassword}</small>:null}
             </Form.Group>
   
             <Button type="submit" >submit</Button>
           </Form>
         </div>
-        {redirect == true? <Redirect exact to="/profile" />:null}
+        {redirect === true? <Redirect exact to="/profile" />:null}
       </div>
     )
 }

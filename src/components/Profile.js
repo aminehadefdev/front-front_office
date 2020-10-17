@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import TableUser from './TableUser'
@@ -54,14 +54,14 @@ function Profile(){
     return(
         <div className="container-admin">
             <div className="constainr-btns">
-                <button onClick={U} className={"btn btn-primary" + ( usersActive == true ? " active": "")}>Users</button>
-                <button onClick={A} className={"btn btn-primary" + (adminsActive == true? " active":"")}>Admins</button>
-                <button onClick={V} className={"btn btn-primary" + (videosActive == true? " active":"")}>Videos</button>
-                <button onClick={R} className={"btn btn-primary" + (RGPD_active == true? " active":"")}>RGPD</button>
-                <button onClick={C} className={"btn btn-primary" + (CGU_active == true? " active":"")}>CGU</button>
+                <button onClick={U} className={"btn btn-primary" + ( usersActive === true ? " active": "")}>Users</button>
+                <button onClick={A} className={"btn btn-primary" + (adminsActive === true? " active":"")}>Admins</button>
+                <button onClick={V} className={"btn btn-primary" + (videosActive === true? " active":"")}>Videos</button>
+                <button onClick={R} className={"btn btn-primary" + (RGPD_active === true? " active":"")}>RGPD</button>
+                <button onClick={C} className={"btn btn-primary" + (CGU_active === true? " active":"")}>CGU</button>
             </div>
-            {usersActive == true ? <TableUser /> : null}
-            {adminsActive == true ? <TableAdmin /> : null}
+            {usersActive === true ? <TableUser /> : null}
+            {adminsActive === true ? <TableAdmin /> : null}
         </div>
     )
 }
