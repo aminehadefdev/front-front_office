@@ -3,7 +3,7 @@ import axios from 'axios'
 import qs from 'qs'
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter as Redirect } from 'react-router-dom';
+import {BrowserRouter as Router, Redirect } from 'react-router-dom';
 
 
 function SignIn(){

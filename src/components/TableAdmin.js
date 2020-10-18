@@ -3,9 +3,18 @@ import Admin from './Admin'
 import qs from 'qs'
 import axios from 'axios'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import {  } from '@fortawesome/free-regular-svg-icons';
+
+import ModalAddAdmin from './ModalAddAdmin'
+
 function TableAdmin(){
     const [admins, setAdmins] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
+
+    const [show, setShow] = useState(false)
+
     useEffect(()=>{
         getAdmins()
     }, [])
@@ -22,7 +31,7 @@ function TableAdmin(){
         axios(config)
             .then(function (response){
                 setIsLoaded(true)
-                setAdmins(response.data.data);
+                setAdmins(response.data.admins);
             })
             .catch(function (error) {
                 console.log(error.response);
@@ -30,6 +39,10 @@ function TableAdmin(){
     }
     return(
         <div className="container-table">
+                <button onClick={()=>{setShow(true)}} className="btn btn-primary add">
+                    <FontAwesomeIcon icon={faPlus} />
+                </button>
+                <ModalAddAdmin show={show} close={()=>{setShow(false)}} />
                 {isLoaded === true?
                     <table className="table">
                         <thead>
