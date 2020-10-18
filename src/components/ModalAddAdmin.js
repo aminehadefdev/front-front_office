@@ -4,14 +4,6 @@ import qs from 'qs'
 import axios from 'axios'
 function ModalAddAdmin(props){
 
-    // value={emailSignIn}
-    // onChange={event=>{setEmailSignIn(event.currentTarget.value)}}
-    // type="email"
-    // placeholder="Enter email"
-
-    // {errorPW != '' ? <small style={{color: "red"}} id="emailHelp">{errorPW}</small>:null}
-    
-
     const [firstname, setFirstname] = useState('ahmed')
     const [lastname, setLastname] = useState('hadef')
     const [email, setEmail] = useState('ahmed@gmail.com')
@@ -39,8 +31,18 @@ function ModalAddAdmin(props){
         };
 
         axios(config)
-        .then(function (response) {
-            
+        .then(function (response){
+            var cpAdms = props.arAdmin
+            cpAdms.push({
+                'firstname': firstname,
+                'lastname': lastname,
+                'email': email,
+                'password': password,
+                'niveau': niveau,
+                "id": response.data.id
+            })
+            props.setAdmins(cpAdms)
+            props.close()
         })
         .catch(function (error) {
             console.log(error);

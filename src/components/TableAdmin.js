@@ -42,7 +42,8 @@ function TableAdmin(){
                 <button onClick={()=>{setShow(true)}} className="btn btn-primary add">
                     <FontAwesomeIcon icon={faPlus} />
                 </button>
-                <ModalAddAdmin show={show} close={()=>{setShow(false)}} />
+
+                <ModalAddAdmin arAdmin={admins} setAdmins={setAdmins} show={show} close={()=>{setShow(false)}} />
                 {isLoaded === true?
                     <table className="table">
                         <thead>
