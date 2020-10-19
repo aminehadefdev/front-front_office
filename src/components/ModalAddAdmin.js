@@ -4,15 +4,32 @@ import qs from 'qs'
 import axios from 'axios'
 function ModalAddAdmin(props){
 
-    const [firstname, setFirstname] = useState('ahmed')
-    const [lastname, setLastname] = useState('hadef')
-    const [email, setEmail] = useState('ahmed@gmail.com')
-    const [password, setPassword] = useState('Bastoz@@@000')
-    const [confirmePassword, setConfirmePassword] = useState('Bastoz@@@000')
-    const [niveau, setNiveau] = useState(2)
+    const [firstname, setFirstname] = useState('')
+    const [errFN, setErrFN] = useState('')
+
+    const [lastname, setLastname] = useState('')
+    const [errLN, setErrLN] = useState('')
+
+    const [email, setEmail] = useState('')
+    const [errEm, setErrEm] = useState('')
+
+    const [password, setPassword] = useState('')
+    const [errPw, setErrPw] = useState('')
+
+    const [confirmePassword, setConfirmePassword] = useState('')
+    const [errCP, setErrCP] = useState('')
+
+    const [niveau, setNiveau] = useState(0)
+    const [errNv, serErrNv] = useState('')
+
+    const [error, setError] = useState('')
 
     function addAdmin(event){
         event.preventDefault()
+        if(password !== confirmePassword){
+            setErrCP('le mot de passe dois etre le meme que le confirme password!')
+            return false
+        }
         var data = qs.stringify({
             'firstname': firstname,
             'lastname': lastname,
@@ -45,7 +62,20 @@ function ModalAddAdmin(props){
             props.close()
         })
         .catch(function (error) {
-            console.log(error);
+            if(error.response.data.errors.includes("le champ firstname est obligatoir!")){setErrFN("le champ firstname est obligatoir!")}
+            if(error.response.data.errors.includes("le firstname doit contenire que des lettre!")){setErrFN("le firstname doit contenire que des lettre!")}
+
+            if(error.response.data.errors.includes("le champ lastname est obligatoir!")){setErrLN("le champ lastname est obligatoir!")}
+            if(error.response.data.errors.includes("le lastname doit contenire que des lettre!")){setErrLN("le lastname doit contenire que des lettre!")}
+
+            if(error.response.data.errors.includes("le champ email est obligatoir!")){setErrEm("le champ email est obligatoir!")}
+            if(error.response.data.errors.includes( "le champ email doit etre valide exemple: toto@gmail.com!")){setErrEm( "le champ email doit etre valide exemple: toto@gmail.com!")}
+
+            if(error.response.data.errors.includes("le champ password est obligatoir!")){setErrPw("le champ password est obligatoir!")}
+            if(error.response.data.errors.includes("le champ password doit contenire au minimum 8 caractaires dont au mois une majuscule une miniscule et un caractaiter special!")){setErrPw("le champ password doit contenire au minimum 8 caractaires dont au mois une majuscule une miniscule et un caractaiter special!")}
+
+            if(error.response.data.errors.includes("le champ niveau d'administration est obligatoir!")){setErrLN("le champ niveau d'administration est obligatoir!")}
+
         });
     }
 
@@ -66,6 +96,7 @@ function ModalAddAdmin(props){
                                     type="text"
                                     placeholder="Enter firstname"
                                 />
+                                {errFN !== '' ? <small className="err">{errFN}</small> :null}
                             </Form.Group>
                         </Col>
                         <Col>
@@ -77,6 +108,7 @@ function ModalAddAdmin(props){
                                     type="text"
                                     placeholder="Enter lastname"
                                 />
+                                {errLN !== '' ? <small className="err">{errLN}</small> :null}
                             </Form.Group>
                         </Col>
                     </Row>
@@ -90,6 +122,7 @@ function ModalAddAdmin(props){
                                     type="email"
                                     placeholder="Enter email"
                                 />
+                                {errEm !== '' ? <small className="err">{errEm}</small> :null}
                             </Form.Group>
                         </Col>
                         <Col>
@@ -100,6 +133,7 @@ function ModalAddAdmin(props){
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </Form.Control>
+                                {errNv === 0 ? <small className="err">{errNv}</small> :null}
                             </Form.Group>
                         </Col>
                     </Row>
@@ -114,6 +148,7 @@ function ModalAddAdmin(props){
                                     placeholder="Enter password"
                                 />
                             </Form.Group>
+                            {errPw !== '' ? <small className="err">{errPw}</small> :null}
                         </Col>
                         <Col>
                             <Form.Group controlId="formBasicConfirmePassword">
@@ -124,6 +159,7 @@ function ModalAddAdmin(props){
                                     type="password"
                                     placeholder="Confirmer password"
                                 />
+                                {errCP !== '' ? <small className="err">{errCP}</small> :null}
                             </Form.Group>
                         </Col>
                     </Row>
