@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import TableUser from './TableUser'
 import TableAdmin from './TableAdmin'
-import Videos from './Videos'
+import TableVideos from './TableVideos'
 
 function Profile(){
     const [usersActive, setUsersActive] = useState(true)
@@ -63,7 +63,7 @@ function Profile(){
             </div>
             {usersActive === true ? <TableUser /> : null}
             {adminsActive === true ? <TableAdmin /> : null}
-            {videosActive === true ? <Videos /> : null}
+            {videosActive === true ? <TableVideos /> : null}
         </div>
     )
 }

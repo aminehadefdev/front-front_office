@@ -39,7 +39,17 @@ function ModalAddVideo(props){
         };
 
         axios(config)
-        .then(function (response) {
+        .then(function (response){
+            var cpVids = props.arVideo
+            cpVids.push({
+                'image': response.data.data.image,
+                'title': title,
+                'path': path,
+                "role": role,
+                'description': description,
+                "id": response.data.data.id
+            })
+            props.setVideos(cpVids)
             props.close()
         })
         .catch(function (error) {

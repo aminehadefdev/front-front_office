@@ -27,7 +27,7 @@ function User(props){
            
         axios(config)
             .then(function (response) {
-                setIsAccepted(true)
+                setIsAccepted(1)
             })
             .catch(function (error) {
                 console.log(error);
@@ -54,7 +54,7 @@ function User(props){
            
         axios(config)
             .then(function (response) {
-                setIsAccepted(false)
+                setIsAccepted(2)
             })
             .catch(function (error) {
                 console.log(error);
@@ -98,7 +98,7 @@ function User(props){
                     <td>{props.user.email}</td>
                     <td>{props.user.job}</td>
                     <td>{props.user.role === 1? "mentore":"mentorée"}</td>
-                    <td>{isAccepted === 1? 'true':"false"}</td>
+                    <td>{isAccepted === 1? 'true': isAccepted === 0? "?": "false"}</td>
                     <td>amineBidon@gmail.com</td>
                     <td className="conatnair-actions">
                         <button onClick={accepter} value={props.user.id} className="btn btn-success">Acepter</button>
