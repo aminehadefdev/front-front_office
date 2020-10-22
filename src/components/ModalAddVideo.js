@@ -13,6 +13,15 @@ function ModalAddVideo(props){
     const [role, setRole] = useState(0)
     const [errRl, serErrRl] = useState('')
 
+    const [name, setName] = useState('')
+    const [errNm, setErrNm] = useState('')
+
+    const [job, setJob] = useState('')
+    const [errJb, setErrJb] = useState('')
+
+    const [age, setAge] = useState('')
+    const [errAg, setErrAg] = useState('')
+
     const [image, setImage] = useState(null)
     const [errIm, setIm] = useState('')
 
@@ -28,6 +37,9 @@ function ModalAddVideo(props){
         data.append('title' , title)
         data.append('path', path)
         data.append("role", role)
+        data.append('name', name)
+        data.append('job', job)
+        data.append('age', age)
         data.append('description', description)
         var config = {
             method: 'post',
@@ -106,18 +118,54 @@ function ModalAddVideo(props){
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId="formBasicImage">
-                                <Form.Label>image</Form.Label>
-                                 <Form.File
-                                    onChange={handleChangeImage}
-                                    id="file"
-                                    name="image"
-                                    accept="image/png, image/jpeg"
+                            <Form.Group controlId="formBasicRole">
+                                <Form.Label>name</Form.Label>
+                                <Form.Control
+                                    value={name}
+                                    onChange={event=>{setName(event.currentTarget.value)}}
+                                    type="text"
+                                    placeholder="Enter name"
                                 />
-                                {errIm !== '' ? <small className="err">{errIm}</small> :null}
+                                {errNm !== '' ? <small className="err">{errNm}</small> :null}
                             </Form.Group>
                         </Col>
                     </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group controlId="formBasicImage">
+                                <Form.Label>job</Form.Label>
+                                <Form.Control
+                                    value={job}
+                                    onChange={event=>{setJob(event.currentTarget.value)}}
+                                    type="text"
+                                    placeholder="Enter job"
+                                />
+                                {errJb !== '' ? <small className="err">{errJb}</small> :null}
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group controlId="formBasicImage">
+                                <Form.Label>age</Form.Label>
+                                <Form.Control
+                                    value={age}
+                                    onChange={event=>{setAge(event.currentTarget.value)}}
+                                    type="text"
+                                    placeholder="Enter age"
+                                />
+                                {errAg !== '' ? <small className="err">{errAg}</small> :null}
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Form.Group controlId="formBasicImage">
+                        <Form.Label>image</Form.Label>
+                        <Form.File
+                            onChange={handleChangeImage}
+                            id="file"
+                            name="image"
+                            accept="image/png, image/jpeg"
+                        />
+                        {errIm !== '' ? <small className="err">{errIm}</small> :null}
+                    </Form.Group>
                     <Form.Group controlId="formBasicDescription">
                         <Form.Label>description</Form.Label>
                         <Form.Control
