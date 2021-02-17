@@ -19,8 +19,8 @@ function SignIn(){
     function handleSubmit(event){
       event.preventDefault()
       var data = qs.stringify({
-      'email': email,
-      'password': password 
+        'email': email,
+        'password': password 
       });
       var config = {
         method: 'post',
@@ -35,9 +35,8 @@ function SignIn(){
       .then(function (response) {
         localStorage.setItem('tokenAdmin',  response.data.token)
         setRedirect(true)
-      })
-      .catch(function (error) {
-        console.log(error.response.data)
+      }).catch(function (error) {
+        console.log(error)
         if(error.response.data.errors.includes('le champ email est obligatoir!')){
           setErrorEmail('le champ email est obligatoir!')
         }
